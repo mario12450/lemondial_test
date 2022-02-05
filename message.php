@@ -217,7 +217,7 @@
                     } 
                 ],
                 "order": [[ 1, "desc" ]],           // urutkan data berdasarkan id_message secara descending
-                "iDisplayLength": 10 ,              // tampilkan 10 data
+                "iDisplayLength": 2 ,              // tampilkan 10 data
                 "rowCallback": function (row, data, iDisplayIndex) {
                     var info   = this.fnPagingInfo();
                     var page   = info.iPage;
