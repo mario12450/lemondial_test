@@ -39,7 +39,7 @@
 
   <div class="container-fluid">
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-            <h5 class="my-0 mr-md-auto font-weight-normal"><i class="fas fa-shopping-cart title-icon"></i> Data Messages menggunakan datatables serverside</h5>
+            <h5 class="my-0 mr-md-auto font-weight-normal"><i class="fas fa-shopping-cart title-icon"></i> Data Messages Crud menggunakan datatables serverside</h5>
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">  
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -71,7 +71,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>ID Messages</th>
+                            <!-- <th>ID Messages</th> -->
                             <th>Nama Pengirim</th>
                             <th>Pesan</th>  
                             <th></th>                          
@@ -150,7 +150,7 @@
                            
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info btn-submit" onclick="UpdateData()">Simpan</button>
+                            <button type="button" class="btn btn-info btn-submit" onclick="UpdateData()">Update </button>
                             <button type="button" class="btn btn-secondary btn-reset" data-dismiss="modal">Batal</button>
                         </div>
                     </form>
@@ -206,12 +206,12 @@
                 "columnDefs": [ 
                     { "targets": 0, "data": null, "orderable": false, "searchable": false, "width": '30px', "className": 'center' },
                     { "targets": 1, "width": '80px', "className": 'center' },
-                    { "targets": 3, "width": '80px', "className": 'center' },                  
+                    { "targets": 2, "width": '80px', "className": 'center' },                  
                     {
-                      "targets": 4, "data": null, "orderable": false, "searchable": false, "width": '70px', "className": 'center',
+                      "targets": 3, "data": null, "orderable": false, "searchable": false, "width": '70px', "className": 'center',
                       "render": function(data, type, row) {
                         
-                          var btn = "<a style=\"margin-right:7px\" title=\"Ubah\" class=\"btn btn-info btn-sm getEdit\"  id='getEdit' href=\"#\"><i class=\"fas fa-edit\"></i></a><a title=\"Hapus\" class=\"btn btn-danger btn-sm btnHapus\" href=\"#\"><i class=\"fas fa-trash\"></i></a>";
+                          var btn = "<a style=\"margin-right:2px\" title=\"Ubah\" class=\"btn btn-info btn-sm getEdit\"  id='getEdit' href=\"#\"><i class=\"fas fa-edit\"></i></a><a title=\"Hapus\" class=\"btn btn-danger btn-sm btnHapus\" href=\"#\"><i class=\"fas fa-trash\"></i></a>";
                           return btn;
                       } 
                     } 
@@ -230,7 +230,7 @@
             // Tampilkan Form Edit Data
             $('#tabel_messages tbody').on( 'click', '.getEdit', function (){
                 var data = table.row( $(this).parents('tr') ).data();
-                var id_message = data[ 1 ];
+                var id_message = data[ 3 ];
                 // alert('tes');
                 $.ajax({
                     type : "GET",
@@ -257,6 +257,7 @@
                 $('#formTambah')[0].reset();
             });
 
+            //proses hapus/delete data message
             $('#tabel_messages tbody').on( 'click', '.btnHapus', function (){
                 var data = table.row( $(this).parents('tr') ).data();
                 // tampilkan notifikasi saat akan menghapus data
@@ -271,7 +272,7 @@
                 }, 
                 // jika dipilih ya, maka jalankan perintah hapus data
                 function () {
-                    var id_message = data[ 1 ];
+                    var id_message = data[ 3 ];
                     $.ajax({
                         type : "POST",
                         url  : "proses_hapus_message.php",
@@ -291,6 +292,7 @@
                     });
                 });
             });
+            //tutup proses delete
 
   } );      
 

@@ -6,11 +6,10 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ( $_SERVER['HTTP_X_REQUESTED_WIT
     // Table's primary key
     $primaryKey = 'id_message';
 
-    $columns = array(
-        array( 'db' => 'id_message', 'dt' => 1 ),      
-        array( 'db' => 'nama_pengirim', 'dt' => 2 ),
-        array( 'db' => 'pesan', 'dt' => 3 ),      
-        array( 'db' => 'id_message', 'dt' => 4 )
+    $columns = array(    
+        array( 'db' => 'nama_pengirim', 'dt' => 1 ),
+        array( 'db' => 'pesan', 'dt' => 2 ),      
+        array( 'db' => 'id_message', 'dt' => 3 )
     );
 
     // SQL server connection information
