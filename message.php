@@ -22,10 +22,33 @@
     <script type="text/javascript" src="assets/js/fungsi_validasi_karakter.js"></script>
 </head>
 <body>
- 
+<div class="container" style="margin-top: 50px">
+  <div class="row">
+  
+
+
   <div class="container-fluid">
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
             <h5 class="my-0 mr-md-auto font-weight-normal"><i class="fas fa-shopping-cart title-icon"></i> Data Messages menggunakan datatables serverside</h5>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">  
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+               
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a href="dashboard.php" class="list-group-item" style="color: #212529;">Dashboard</a>
+                      <a href="message.php" class="list-group-item" style="color: #212529;">Messages</a>
+                      <a href="logout.php" class="list-group-item" style="color: #212529;">Logout</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+
             <a class="btn btn-info" id="btnTambah" href="#" data-toggle="modal" data-target="#modalTambah" role="button"><i class="fas fa-plus"></i> Tambah</a>
         </div>
     </div>
@@ -124,6 +147,10 @@
                 </div>
             </div>
         </div>
+
+     </div>
+    </div>
+
         <!-- End Modal Edit -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
@@ -334,7 +361,7 @@
                   // console.log(result);
                     if (result==="sukses") {
                         // tutup modal ubah data transaksi
-                        $('#modalUbah').modal('hide');
+                        $('#modalEdit').modal('hide');
                         // tampilkan pesan sukses ubah data
                         swal("Sukses!", "Data Message  berhasil diubah.", "success");
                         

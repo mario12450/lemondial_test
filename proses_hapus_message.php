@@ -23,6 +23,6 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ( $_SERVER['HTTP_X_REQUESTED_WIT
     // tutup koneksi
     $mysqli->close();   
 } else {
-    echo '<script>window.location="dashboard.php"</script>';
+    echo '<script>window.location="message.php"</script>';
 }
 ?>
