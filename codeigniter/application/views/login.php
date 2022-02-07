@@ -78,10 +78,10 @@
 
             $.ajax({
 
-              url: "<?php echo base_url() ?>index.php/login/cek_login",
+              url: "<?php echo base_url() ?>/login/cek_login",
               type: "POST",
               data: {
-                  "username": username,
+                  "username": username, 
                   "password": password
               },
 

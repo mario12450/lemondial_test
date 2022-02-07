@@ -15,9 +15,9 @@
           <div class="col-md-3">
             <ul class="list-group">
               <li class="list-group-item active">MAIN MENU</li>
-              <a href="<?php echo base_url() ?>index.php/dashboard" class="list-group-item" style="color: #212529;">Dashboard</a>
+              <a href="<?php echo base_url() ?>dashboard" class="list-group-item" style="color: #212529;">Dashboard</a>
               <li class="list-group-item">Profile</li>
-              <a href="<?php echo base_url() ?>index.php/dashboard/logout" class="list-group-item" style="color: #212529;">Logout</a>
+              <a href="<?php echo base_url() ?>/dashboard/logout" class="list-group-item" style="color: #212529;">Logout</a>
             </ul>
           </div>
 
