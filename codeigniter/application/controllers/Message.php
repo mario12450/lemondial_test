@@ -67,7 +67,6 @@ class Message extends CI_Controller {
 
     public function ajax_update()
     {
-
         // var_dump($_POST);die;
         $data = array(
                 'nama_pengirim' => $this->input->post('nama_pengirim'),
