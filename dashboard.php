@@ -1,7 +1,7 @@
 <?php
 
   session_start();
-
+  
   if(!$_SESSION['id_user'])
   {
     header("location: login.php");
@@ -38,7 +38,7 @@
                 <label>DASHBOARD</label>
                 <hr>
 
-                Selamat Datang <?php echo $_SESSION['nama_lengkap'] ?>
+                Selamat Datang <strong> <?php echo $_SESSION['nama_lengkap'] ?> </strong>
 
               </div>
             </div>

@@ -229,16 +229,21 @@
 
             // Tampilkan Form Edit Data
             $('#tabel_messages tbody').on( 'click', '.getEdit', function (){
-                var data = table.row( $(this).parents('tr') ).data();
+                var data = table.row( $(this).parents('tr') ).data();                
+                
                 var id_message = data[ 3 ];
-                // alert('tes');
+                // var nama_pengirim = data[ 1 ] ;
+                // alert(nama_pengirim);
                 $.ajax({
                     type : "GET",
                     url  : "get_message.php",
-                    data : {id_message:id_message},
+                    data : {
+                            id_message:id_message,
+                            nama_pengirim : nama_pengirim
+                            },
                     dataType : "JSON",
                     success: function(result){
-                        console.log(result);                      
+                        // console.log(result);                      
                        
                         // tampilkan modal ubah data message
                         $('#modalEdit').modal('show');
