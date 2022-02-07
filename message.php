@@ -285,7 +285,7 @@
                         success: function(result){                          // ketika sukses menghapus data
                             if (result==="sukses") {
                                 // tampilkan pesan sukses hapus data
-                                swal("Sukses!", "Data Transaksi Penjualan berhasil dihapus.", "success");
+                                swal("Sukses!", "Data  berhasil dihapus.", "success");
                                 // tampilkan data transaksi
                                 var table = $('#tabel_messages').DataTable(); 
                                 table.ajax.reload( null, false );
