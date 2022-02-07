@@ -100,7 +100,8 @@
                   })
                   .then (function() {
                     // alert('error');
-                    window.location.href = "<?php echo base_url() ?>dashboard";
+                    // window.location.href = "<?php echo base_url() ?>dashboard";
+                     $('.container').load('<?php echo base_url() ?>dashboard'); 
                   });
 
                 } 
