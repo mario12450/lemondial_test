@@ -64,6 +64,7 @@
                             <!-- <th>ID Messages</th> -->
                             <th>Nama Pengirim</th>
                             <th>Pesan</th>  
+                            <th>Foto</th>
                             <th></th>                          
                         </tr>
                     </thead>

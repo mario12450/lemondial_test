@@ -30,7 +30,11 @@ class Message extends CI_Controller {
             $row[] = $no++;
             $row[] = $messages->nama_pengirim;
             $row[] = $messages->pesan;
- 
+            if($messages->foto)
+                $row[] = '<a href="'.base_url('upload/'.$messages->foto).'" target="_blank"><img src="'.base_url('./assets/uploads/'.$messages->foto).'" class="img-responsive" style="width:50%;"/></a>';
+            else
+                $row[] = '(No photo)';
+     
             //add html for action
             $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_message('."'".$messages->id_message."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                   <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_message('."'".$messages->id_message."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
