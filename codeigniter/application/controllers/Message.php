@@ -17,6 +17,8 @@ class Message extends CI_Controller {
  
     public function ajax_list()
     {
+        $this->load->helper('url');
+ 
         $list = $this->messages->get_datatables();
         $data = array();
         $no = 1;
@@ -46,15 +48,44 @@ class Message extends CI_Controller {
         echo json_encode($output);
     }
 
+    private function _do_upload()
+    {
+        $config['upload_path']          = './assets/uploads/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        // $config['max_size']             = 100; //set max size allowed in Kilobyte
+        // $config['max_width']            = 1000; // set max width image allowed
+        // $config['max_height']           = 1000; // set max height allowed
+        $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+        // var_dump($config);die;
+        $this->load->library('upload', $config);
+    
+        if(!$this->upload->do_upload('photo')) //upload and validate
+        {
+            $data['inputerror'][] = 'photo';
+            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
     public function ajax_add()
     {
+        // var_dump($_FILES);die;
         $data = array(
                 'nama_pengirim' => $this->input->post('nama_pengirim'),
                 'pesan' => $this->input->post('pesan'),
                 );
         // var_dump($data);die;
-
+        if(!empty($_FILES['photo']['name']))
+        {
+            $upload = $this->_do_upload();
+            $data['foto'] = $upload;
+        }
+ 
         $insert = $this->messages->save($data);
+        // var_dump($insert);die;
         echo json_encode(array("status" => TRUE));
     }
 
@@ -72,6 +103,27 @@ class Message extends CI_Controller {
                 'nama_pengirim' => $this->input->post('nama_pengirim'),
                 'pesan' => $this->input->post('pesan'),
             );
+
+        if($this->input->post('remove_photo')) // if remove photo checked
+        {
+            if(file_exists('./assets/uploads/'.$this->input->post('remove_photo')) && $this->input->post('remove_photo'))
+                unlink('./assets/uploads/'.$this->input->post('remove_photo'));
+            $data['photo'] = '';
+        }
+ 
+        if(!empty($_FILES['photo']['name']))
+        {
+            $upload = $this->_do_upload();
+             
+            //delete file
+
+            $messages = $this->messages->get_by_id($this->input->post('id_message'));
+            // var_dump($messages);die;
+            if(file_exists('./assets/uploads/'.$messages->foto) && $messages->foto)
+                unlink('./assets/uploads/'.$messages->foto);
+ 
+            $data['foto'] = $upload;
+        }
         $this->messages->update(array('id_message' => $this->input->post('id_message')), $data);
         echo json_encode(array("status" => TRUE));
     }

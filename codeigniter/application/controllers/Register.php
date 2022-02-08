@@ -11,15 +11,26 @@ class Register extends CI_Controller {
 
     public function simpan()
     {
-        //load model M_user
+        // var_dump($_POST);die;
+        
+       $config = array(
+                'upload_path' => "./assets/uploads",
+                'allowed_types' => "gif|jpg|png|jpeg|pdf",
+                'overwrite' => TRUE,
+                'max_size' => "2048000", 
+                 );
+        // var_dump($config);die;
+        $this->load->library('upload',$config);
+        // var_dump($test);die;         
         $this->load->model('m_user');
-
+      
         $data = array(
             'nama_lengkap' => $this->input->post('nama_lengkap'),
             'username'       => $this->input->post('username'),
-            'password'       => password_hash($this->input->post('password'), PASSWORD_DEFAULT),    
+            'password'       => password_hash($this->input->post('password'), PASSWORD_DEFAULT),  
+            
         );
-
+        // var_dump($data);die;
         //insert data via model
         $register = $this->m_user->simpan_register($data);
 
@@ -35,5 +46,7 @@ class Register extends CI_Controller {
         }
 
     }
+
+    
 
 }

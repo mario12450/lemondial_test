@@ -89,6 +89,7 @@ class M_message extends CI_Model {
  
     public function save($data)
     {
+        // var_dump($data);die;
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
     }

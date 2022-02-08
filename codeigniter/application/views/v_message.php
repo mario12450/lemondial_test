@@ -84,7 +84,8 @@
                     </div>
                     <form id="formTambah">
                         <div class="modal-body">
-                            <input type="text" value="" name="id_message"/> 
+                            <input type="text" value="" id="id_message" name="id_message"/> 
+
                             <div class="form-group">
                                 <label>Nama Pengirim</label>
                                 <input type="text" class="form-control date-picker" id="nama_pengirim" name="nama_pengirim" autocomplete="off" value="">
@@ -93,9 +94,22 @@
                             <div class="form-group">
                                 <label>Pesan</label>
                                 <input type="text" class="form-control" id="pesan" name="pesan" autocomplete="off">
-                            </div>
+                            </div> 
 
-                           
+                            <div class="form-group" id="photo-preview">
+                                <label class="control-label col-md-3">Photo</label>
+                                <div class="col-md-9">
+                                    (No photo)
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" id="label-photo">Upload Photo </label>
+                                <div class="col-md-9">
+                                    <input id="phoyo" name="photo" type="file">
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>                         
                            
                         </div>
                         <div class="modal-footer">
@@ -136,6 +150,8 @@
 <script type="text/javascript">
 var save_method; //for save method string
 var table;
+var base_url = '<?php echo base_url();?>';
+
 $(document).ready(function() {
  
     //datatables
@@ -160,7 +176,20 @@ $(document).ready(function() {
         ],
  
     });
- 
+    
+    //set input/textarea/select event when change value, remove class error and remove text help block 
+    $("input").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
+    $("textarea").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
+    $("select").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
     
  
 });
@@ -174,6 +203,10 @@ function btnTambah()
     $('.help-block').empty(); // clear error string
     $('#modalTambah').modal('show'); // show bootstrap modal
     $('.modal-title').text('Add Message'); // Set Title to Bootstrap modal title
+
+    $('#photo-preview').hide(); // hide photo preview modal
+ 
+    $('#label-photo').text('Upload Photo'); // label photo upload
 }
 
 function reload_table()
@@ -196,12 +229,16 @@ function btnSimpan()
         url = "<?php echo site_url('message/ajax_update')?>";
     }
 
- 
     // ajax adding data to database
+    var formData = new FormData($('#formTambah')[0]);
+    // console.log(formData);
+    // data: $('#formTambah').serialize(),
     $.ajax({
         url : url,
         type: "POST",
-        data: $('#formTambah').serialize(),
+        data: formData,
+        contentType: false,
+        processData: false,
         dataType: "JSON",
         success: function(data)
         {
@@ -210,7 +247,14 @@ function btnSimpan()
                 swal("Sukses!", "Data  berhasil disimpan !", "success");
                 $('#modalTambah').modal('hide');
                 reload_table();
-
+            }
+            else
+            {
+                for (var i = 0; i < data.inputerror.length; i++) 
+                {
+                    $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
+                    $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
+                }
             }
  
             $('#btnSave').text('save'); //change button text
@@ -244,11 +288,26 @@ function edit_message(id)
         success: function(data)
         {
             // console.log(data.id_message);
-            $('[name="id_message"]').val(data.id_message);
-            $('[name="nama_pengirim"]').val(data.nama_pengirim);
-            $('[name="pesan"]').val(data.pesan);
+            $('#id_message').val(data.id_message);
+            $('#nama_pengirim').val(data.nama_pengirim);
+            $('#pesan').val(data.pesan);
             $('#modalTambah').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit Message'); // Set title to Bootstrap modal title
+
+            $('#photo-preview').show(); // show photo preview modal
+
+            if(data.photo)
+            {
+                $('#label-photo').text('Change Photo'); // label photo upload
+                $('#photo-preview div').html('<img src="'+base_url+'upload/'+data.photo+'" class="img-responsive">'); // show photo
+                $('#photo-preview div').append('<input type="checkbox" name="remove_photo" value="'+data.photo+'"/> Remove photo when saving'); // remove photo
+ 
+            }
+            else
+            {
+                $('#label-photo').text('Upload Photo'); // label photo upload
+                $('#photo-preview div').text('(No photo)');
+            }
  
         },
         error: function (jqXHR, textStatus, errorThrown)

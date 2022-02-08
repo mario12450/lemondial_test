@@ -26,10 +26,12 @@ class M_user extends CI_model {
 		if (!empty($user)) 
 		{
 			// echo 'tidak empty user';
-			// if (password_verify($password, $password)) 
+			// var_dump($user);die;
+			// if (password_hash($password, PASSWORD_DEFAULT)) 				
 			if($password === $password)
 			{
 				// echo 'berhasil';
+				// var_dump($query->result());die;
 			  return $query->result();
 			}
 			else 

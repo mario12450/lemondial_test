@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/mario2.css">
 
 	<style type="text/css">
 
@@ -67,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<div id="container">
+<!-- <div id="container">
 	<h1>Welcome to CodeIgniter!</h1>
 
 	<div id="body">
@@ -83,7 +84,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
+</div> -->
+
+<h1 class="slogan">We are the best team in the league.</h1>
+<section class="team">
+  <div class="grid">
+    <figure class="effect-steve">
+      <img src="https:instagram.com/mariohamas/scontent-sin6-3.cdninstagram.com/v/t51.2885-19/s150x150/272789399_1132891807456110_4685170065880317284_n.jpg?_nc_ht=scontent-sin6-3.cdninstagram.com&_nc_cat=106&_nc_ohc=8wpKNRodOxsAX9jYnWf&edm=ABfd0MgBAAAA&ccb=7-4&oh=00_AT_mYBWaqI7jNVj9q0b2bHplwmguInRuaBEHsQ9AVb-5_g&oe=620954D4&_nc_sid=7bff83" />
+      <figcaption>
+        <h2>Mario <span> Abdul Salam</span></h2>
+        <p>Saya adalah Web Developer . Saya menguasai HTML,CSS, Javascript. </p>
+      </figcaption>
+    </figure>
+
+    <figure class="effect-steve">
+      <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D 750w" />
+      <figcaption>
+        <h2>Tiffany <span>Roberts</span></h2>
+        <p>Award-winning travel ninja. Pop culture enthusiast.</p>
+      </figcaption>
+    </figure>
+
+    <figure class="effect-steve">
+      <img src="https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D 750w" />
+      <figcaption>
+        <h2>Richard <span>Clinton</span></h2>
+        <p>Currently in love with cycling. Obsessed with creating helpful stuff.</p>
+      </figcaption>
+    </figure>
+    <figure class="effect-steve">
+      <img src="https://images.unsplash.com/photo-1477597073867-a0c34dba8be5?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D 750w" />
+      <figcaption>
+        <h2>Becca <span>Phillips</span></h2>
+        <p>I like movies and books. I eat the pizza crust. Coffee addict.</p>
+      </figcaption>
+    </figure>
+  </div>  
+</section>
 
 </body>
 </html>

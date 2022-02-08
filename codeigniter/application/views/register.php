@@ -31,7 +31,8 @@
                   <label>Password</label>
                   <input type="password" class="form-control" id="password" placeholder="Masukkan Password">
                 </div>
-                
+
+                              
                 <button class="btn btn-register btn-block btn-success">REGISTER</button>
               
             </div>
@@ -57,33 +58,35 @@
           var nama_lengkap = $("#nama_lengkap").val();
           var username = $("#username").val();
           var password = $("#password").val();
+        
 
-          if (nama_lengkap.length == "") {
-
+          if (nama_lengkap.length == "") 
+          {
             Swal.fire({
               type: 'warning',
               title: 'Oops...',
               text: 'Nama Lengkap Wajib Diisi !'
             });
-
-          } else if(username.length == "") {
-
+          } 
+          else if(username.length == "") 
+          {
             Swal.fire({
               type: 'warning',
               title: 'Oops...',
               text: 'Username Wajib Diisi !'
             });
-
-          } else if(password.length == "") {
-
+          } 
+          else if(password.length == "") 
+          {
             Swal.fire({
               type: 'warning',
               title: 'Oops...',
               text: 'Password Wajib Diisi !'
             });
-
-          } else {
-
+          } 
+         
+          else 
+          {
             //ajax
             $.ajax({
 
@@ -132,7 +135,6 @@
               }
 
             })
-
           }
 
         }); 
